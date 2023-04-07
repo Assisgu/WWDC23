@@ -6,6 +6,7 @@ struct MyApp: App {
         WindowGroup {
 //            ContentView()
             HomeView()
+//            InfoView()
         }
     }
 }
