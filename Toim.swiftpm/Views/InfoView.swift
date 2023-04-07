@@ -41,7 +41,6 @@ struct InfoView: View {
             }
             .foregroundColor(.white)
             .frame(width: geometry.size.width, alignment: .center)
-            
         }
     }
 }

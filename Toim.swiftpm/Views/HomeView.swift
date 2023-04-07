@@ -10,7 +10,7 @@ import SwiftUI
 struct HomeView: View {
     
     var body: some View {
-        NavigationView {
+//        NavigationView {
             GeometryReader { geometry in
                 ZStack{
                     Color(.systemCyan)
@@ -44,9 +44,7 @@ struct HomeView: View {
                             .foregroundColor(.white)
                             .frame(alignment: .bottomLeading)
                         
-                        Button {
-                            print("oii")
-                        } label: {
+                        NavigationLink(destination: GameView()) {
                             Text("START")
                                 .font(.system(size: geometry.size.width * 0.07).weight(.bold))
                         }
@@ -60,9 +58,7 @@ struct HomeView: View {
                 
             }
             .ignoresSafeArea()
-        }
-        .navigationViewStyle(StackNavigationViewStyle())
-
+            .navigationBarHidden(true)
     }
 }
 

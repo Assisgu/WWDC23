@@ -10,7 +10,6 @@ import SwiftUI
 struct ConfigView: View {
     var body: some View {
         VStack {
-            
             Text("Screen config")
                 .font(.system(size: 50))
             Image(systemName: "gear")
