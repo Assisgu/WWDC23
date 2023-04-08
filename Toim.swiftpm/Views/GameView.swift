@@ -40,7 +40,6 @@ struct GameView: View {
                             PadButton(color: .blue)
                         }
                         .frame(width: geometry.size.width * 0.2, height: geometry.size.height * 0.7)
-                        
                     }
                 }.frame(width: geometry.size.width * 0.24, height: geometry.size.height * 0.75)
                     
