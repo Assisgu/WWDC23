@@ -10,9 +10,9 @@ import SwiftUI
 struct IntroView: View {
     @State private var index: Int = 0
     @State var start: Bool = false
+    @State var prepared: Bool = false
     private var textOnly = TextOnly()
     private var textIntro : [String]
-    
     
     init(){
         self.textIntro = textOnly.textIntr
@@ -30,7 +30,8 @@ struct IntroView: View {
                         Text("\(textIntro[index])")
                             .font(.system(.largeTitle, design: .rounded) .weight(.semibold))
                     }
-                    .frame(height: geometry.size.height * 0.3)
+                    .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.3)
+                                        
                     
                     HStack {
                         Image("toim-intro")
@@ -41,26 +42,47 @@ struct IntroView: View {
                     .frame(height: geometry.size.height * 0.6)
                     
                     HStack{
-                        !start ? Text("Tap to continue") : Text("Play")
-                        
-                        NavigationLink(destination: HomeView()) {
-                            Text ("Clica aqui ")
+                        if index >= 1 {
+                            Button {
+                                if index > 0 {
+                                    index -= 1
+                                    prepared = false
+                                }
+                            } label: {
+                                Text("Back")
+                            }
                         }
-
+                        Spacer()
+                        if !prepared {
+                            Button {
+                                if index < textIntro.count - 1 {
+                                    index += 1
+                                } else {
+                                    prepared = true
+                                }
+                            } label: {
+                                Text("Continue")
+                            }
+                        } else {
+                            NavigationLink(destination: HomeView()) {
+                                Text("Lets go")
+                            }
+                        }
                     }
                     .frame(height: geometry.size.height * 0.1)
-                    .padding(.bottom)
+                    .padding(.horizontal, geometry.size.width * 0.1)
                 }
                 .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
                 .foregroundColor(.white)
-                .onTapGesture {
-                    if index < textIntro.count - 1 {
-                        index += 1
-                    } else {
-                        index = 0
-                        start = true
-                    }
-                }
+                
+//                .onTapGesture {
+//                    if index < textIntro.count - 1 {
+//                        index += 1
+//                    } else {
+//                        index = 0
+//                        start = true
+//                    }
+//                }
             }
             .navigationBarHidden(true)
             .ignoresSafeArea()
