@@ -8,9 +8,10 @@
 import SwiftUI
 
 struct HomeView: View {
+    @State var highScore: Bool = false 
     
     var body: some View {
-//        NavigationView {
+
             GeometryReader { geometry in
                 ZStack{
                     Color(.systemCyan)
@@ -40,9 +41,12 @@ struct HomeView: View {
                     .frame(width: geometry.size.width, height: geometry.size.height, alignment: .top)
                     
                     VStack{
-                        Text ("High Score: 77")
-                            .foregroundColor(.white)
-                            .frame(alignment: .bottomLeading)
+                        if highScore {
+                            Text ("High Score: 77")
+                                .foregroundColor(.white)
+                                .frame(alignment: .bottomLeading)
+                        }
+                        
                         
                         NavigationLink(destination: GameView()) {
                             Text("START")

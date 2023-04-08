@@ -1,15 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "violaum.png",
+      "filename" : "guitar-game@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
+      "filename" : "guitar-game@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
+      "filename" : "guitar-game@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
