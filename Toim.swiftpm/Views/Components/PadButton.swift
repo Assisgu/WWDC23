@@ -9,16 +9,16 @@ import SwiftUI
 
 struct PadButton: View {
     var color : Color
-    
     var body: some View {
-        GeometryReader { geometry in
-            RoundedRectangle(cornerRadius: 20)
-                .foregroundColor(color)
-//                .frame(width: geometry.size.width * 0.3, height: geometry.size.width * 0.5)
-            
-        }
-        
-        
+        RoundedRectangle(cornerRadius: 20)
+            .foregroundColor(color)
+    }
+}
+
+struct PadLight: View {
+    var body: some View{
+        PadButton(color: .white)
+            .blur(radius: 70)
     }
 }
 

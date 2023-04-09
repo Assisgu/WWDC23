@@ -13,7 +13,8 @@ struct HomeView: View {
     var body: some View {
             GeometryReader { geometry in
                 ZStack{
-                    Color(.systemCyan)
+//                    Color(.systemCyan)
+                    Color(red: 89/255, green: 111/255, blue: 130/255)
                     
                     Image("guitar")
                         .resizable()
