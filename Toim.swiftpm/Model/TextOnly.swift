@@ -8,6 +8,6 @@
 import Foundation
 
 class TextOnly {
-    public var textIntr: [String] = ["Texto 1", "Texto 2", "Texto 3", "Texto 4"]
+    public var textIntr: [String] = ["Olá, tem alguem ai ?", "Texto 2", "Texto 3", "Texto 4"]
     
 }

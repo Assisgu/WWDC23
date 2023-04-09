@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct GameView: View {
+    
+    @State var showCounter: Bool = false
+    
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -42,13 +45,18 @@ struct GameView: View {
                         .frame(width: geometry.size.width * 0.2, height: geometry.size.height * 0.7)
                     }
                 }.frame(width: geometry.size.width * 0.24, height: geometry.size.height * 0.75)
+                if showCounter {
+                    CountView(showCounter: $showCounter)
+                }
                     
             }
             .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
             
         }
         .ignoresSafeArea()
-
+        .onAppear{
+            showCounter = true
+        }
     }
 }
 
