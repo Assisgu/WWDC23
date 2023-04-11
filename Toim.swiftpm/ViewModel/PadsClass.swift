@@ -17,8 +17,9 @@ class PadsClass: ObservableObject {
     @Published var lightBlue: Bool = false
     @Published var playerCanplay: Bool = false
     
-    @Published var playerSequence = [String]()
+    var playerSequence = [String]()
     var gameSequence = [String]()
+    var countTouchs: Int = 0
     
     
     func turnOnLight(color: Int){
@@ -32,6 +33,8 @@ class PadsClass: ObservableObject {
             }
             if playerCanplay {
                 self.playerSequence.append("green")
+                self.countTouchs += 1
+                checkTouchs(amountTouchs: countTouchs)
             }
             
         case 2:
@@ -43,6 +46,8 @@ class PadsClass: ObservableObject {
             }
             if playerCanplay {
                 self.playerSequence.append("yellow")
+                self.countTouchs += 1
+                checkTouchs(amountTouchs: countTouchs)
             }
             
         case 3:
@@ -54,6 +59,8 @@ class PadsClass: ObservableObject {
             }
             if playerCanplay {
                 self.playerSequence.append("red")
+                self.countTouchs += 1
+                checkTouchs(amountTouchs: countTouchs)
             }
             
         case 4:
@@ -65,6 +72,8 @@ class PadsClass: ObservableObject {
             }
             if playerCanplay {
                 self.playerSequence.append("blue")
+                self.countTouchs += 1
+                checkTouchs(amountTouchs: countTouchs)
             }
 
         default:
@@ -108,9 +117,11 @@ class PadsClass: ObservableObject {
                 print("default")
             }
             
-            delay(count){
-                self.playerCanplay = true
-            }
+        }
+        
+        delay(count){
+            self.playerCanplay = true
+            print("pode jogar agora")
         }
     }
     
@@ -153,6 +164,34 @@ class PadsClass: ObservableObject {
     
     func startFree(){
         
+    }
+    
+    func checkTouchs(amountTouchs: Int){
+        if amountTouchs >= self.gameSequence.count{
+            self.playerCanplay = false
+            
+            if checkAnswer(sequence: gameSequence, playerSequence: self.playerSequence){
+                delay(1.3){
+                    self.getSequence()
+                }
+            } else {
+                print("fim da linha 🕳️")
+            }
+        }
+    }
+    
+    func checkAnswer(sequence: [String], playerSequence: [String]) -> Bool {
+        if sequence == playerSequence {
+            print("Acertou 🥶")
+            self.playerSequence.removeAll()
+            countTouchs = 0
+            return true
+        } else {
+            print("Errou 😦")
+            self.playerSequence.removeAll()
+            self.gameSequence.removeAll()
+            return false
+        }
     }
     
 }

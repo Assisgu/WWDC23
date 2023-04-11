@@ -11,7 +11,6 @@ struct GameView: View {
     
     @State var showCounter: Bool = false
     @State var startGame: Bool = false
-    @State var playerCan: Bool = false
     @StateObject var padsViewModel = PadsClass.shared
     
     private let padsGameView = PadsGame()
@@ -64,22 +63,24 @@ struct GameView: View {
             
         }
         .ignoresSafeArea()
+        
         .onAppear{
             showCounter = true
             
+        }
+        .onDisappear{
+            //Criar funcao de zerar tudo
+            padsViewModel.gameSequence.removeAll()
         }
         
 //
         
         .onChange(of: startGame){ newValue in
             //Aqui é so para modo desafio
+            // Modo free -> padsViewModel.playerCanplay = true
             padsGameView.padsViewModel.getSequence()
-            
-            
-            //            print("\(padsGame.padsViewModel.gameSequence)")
         }
     }
-    
 }
 
 struct GameView_Previews: PreviewProvider {

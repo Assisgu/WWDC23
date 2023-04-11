@@ -35,10 +35,9 @@ struct PadsGame: View {
                     
                     //Yellow
                     Button {
-                        padsViewModel.turnOnLight(color: 2)
-                        padsViewModel.playerCanplay.toggle()
-                        print(padsViewModel.playerCanplay)
-                        
+                        if padsViewModel.playerCanplay {
+                            padsViewModel.turnOnLight(color: 2)
+                        }
                     } label: {
                         ZStack{
                             PadButton(color: .yellow)
@@ -50,7 +49,9 @@ struct PadsGame: View {
                     
                     //Red
                     Button {
-                        padsViewModel.turnOnLight(color: 3)
+                        if padsViewModel.playerCanplay {
+                            padsViewModel.turnOnLight(color: 3)
+                        }
                     } label: {
                         ZStack{
                             PadButton(color: .red)
@@ -62,7 +63,9 @@ struct PadsGame: View {
                     
                     //Blue
                     Button {
-                        padsViewModel.turnOnLight(color: 4)
+                        if padsViewModel.playerCanplay {
+                            padsViewModel.turnOnLight(color: 4)
+                        }
                     } label: {
                         ZStack{
                             PadButton(color: .blue)
