@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PadsGame: View {
     
-   @StateObject var padsViewModel = PadsClass()
+   @ObservedObject var padsViewModel = PadsClass()
     
     var body: some View {
         GeometryReader { geometry in
@@ -17,40 +17,45 @@ struct PadsGame: View {
                 RoundedRectangle(cornerRadius: 20)
                     .foregroundColor(.black)
                     .opacity(0.74)
+                    .frame(height: geometry.size.height * 0.9)
                 
                 VStack(spacing: geometry.size.height * 0.03) {
                     //Green
                     Button {
-                        padsViewModel.turnOnLight(color: 1)
+                        if padsViewModel.playerCanplay {
+                            padsViewModel.turnOnLight(color: 1)
+                        }
                     } label: {
                         ZStack{
                             PadButton(color: .green)
                             if padsViewModel.lightGreen {
                                 PadLight()
                             }
-                            
                         }
                     }
-
+                    
                     //Yellow
                     Button {
                         padsViewModel.turnOnLight(color: 2)
+                        padsViewModel.playerCanplay.toggle()
+                        print(padsViewModel.playerCanplay)
+                        
                     } label: {
                         ZStack{
                             PadButton(color: .yellow)
-                            if padsViewModel.lightYellow {
+                            if padsViewModel.lightYellow{
                                 PadLight()
                             }
                         }
                     }
-
+                    
                     //Red
                     Button {
                         padsViewModel.turnOnLight(color: 3)
                     } label: {
                         ZStack{
                             PadButton(color: .red)
-                            if padsViewModel.lightRed {
+                            if padsViewModel.lightRed{
                                 PadLight()
                             }
                         }
@@ -62,20 +67,48 @@ struct PadsGame: View {
                     } label: {
                         ZStack{
                             PadButton(color: .blue)
-                            if padsViewModel.lightBlue {
+                            if padsViewModel.lightBlue{
                                 PadLight()
                             }
                         }
                     }
-             
                 }
                 .buttonStyle(NoAnim())
                 .padding()
+                .frame(height: geometry.size.height * 0.9)
+            
+                
+//                VStack{
+//                    padsViewModel.playerCanplay ?  Text("Pode jogar") : Text ("Memorize sequence")
+//
+//                } .frame(height: geometry.size.height, alignment: .bottom)
+//                    .font(.system(.title).weight(.medium))
+//                    .padding()
+            }
+            .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
+           
+        }
+        
+    }
+}
 
-            }.frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
+struct MessageView: View {
+    
+    private var padGameView = PadsGame()
+    
+    @ObservedObject var messageViewModel = PadsClass()
+    var body: some View {
+        VStack{
+            if padGameView.padsViewModel.playerCanplay {
+                Text("Verdade")
+            } else {
+                Text("Mentira")
+            }
         }
     }
 }
+
+
 
 struct NoAnim: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
@@ -89,7 +122,11 @@ struct PadsGame_Previews: PreviewProvider {
             VStack{
                 PadsGame()
                     .frame(width: geometry.size.width * 0.24, height: geometry.size.height * 0.75)
+                MessageView()
+                
+                
             } .frame(width: geometry.size.width, height: geometry.size.height, alignment:  .center)
+            
 
         }
     }

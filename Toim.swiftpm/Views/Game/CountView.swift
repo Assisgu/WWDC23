@@ -11,6 +11,7 @@ struct CountView: View {
     
     @State private var timeRemaning: Int = 3
     @Binding var showCounter: Bool
+    @Binding var startGame: Bool
     
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
@@ -35,7 +36,8 @@ struct CountView: View {
                 if timeRemaning > 0 {
                     timeRemaning -= 1
                 } else if timeRemaning == 0 {
-                    showCounter = false
+                    self.showCounter = false
+                    self.startGame = true
                 }
             }
         }
