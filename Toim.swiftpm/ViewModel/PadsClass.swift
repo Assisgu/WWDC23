@@ -10,6 +10,7 @@ import SwiftUI
 
 class PadsClass: ObservableObject {
     
+    static let shared = PadsClass()
     @Published var lightGreen: Bool = false
     @Published var lightYellow: Bool = false
     @Published var lightRed: Bool = false

@@ -9,7 +9,7 @@ import SwiftUI
 
 struct PadsGame: View {
     
-   @ObservedObject var padsViewModel = PadsClass()
+    @ObservedObject var padsViewModel: PadsClass = PadsClass.shared
     
     var body: some View {
         GeometryReader { geometry in
@@ -17,7 +17,6 @@ struct PadsGame: View {
                 RoundedRectangle(cornerRadius: 20)
                     .foregroundColor(.black)
                     .opacity(0.74)
-                    .frame(height: geometry.size.height * 0.9)
                 
                 VStack(spacing: geometry.size.height * 0.03) {
                     //Green
@@ -75,35 +74,9 @@ struct PadsGame: View {
                 }
                 .buttonStyle(NoAnim())
                 .padding()
-                .frame(height: geometry.size.height * 0.9)
-            
-                
-//                VStack{
-//                    padsViewModel.playerCanplay ?  Text("Pode jogar") : Text ("Memorize sequence")
-//
-//                } .frame(height: geometry.size.height, alignment: .bottom)
-//                    .font(.system(.title).weight(.medium))
-//                    .padding()
             }
             .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
            
-        }
-        
-    }
-}
-
-struct MessageView: View {
-    
-    private var padGameView = PadsGame()
-    
-    @ObservedObject var messageViewModel = PadsClass()
-    var body: some View {
-        VStack{
-            if padGameView.padsViewModel.playerCanplay {
-                Text("Verdade")
-            } else {
-                Text("Mentira")
-            }
         }
     }
 }
@@ -122,7 +95,6 @@ struct PadsGame_Previews: PreviewProvider {
             VStack{
                 PadsGame()
                     .frame(width: geometry.size.width * 0.24, height: geometry.size.height * 0.75)
-                MessageView()
                 
                 
             } .frame(width: geometry.size.width, height: geometry.size.height, alignment:  .center)

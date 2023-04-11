@@ -12,12 +12,9 @@ struct GameView: View {
     @State var showCounter: Bool = false
     @State var startGame: Bool = false
     @State var playerCan: Bool = false
+    @StateObject var padsViewModel = PadsClass.shared
     
     private let padsGameView = PadsGame()
-    
-//    @ObservedObject var padsViewModel = PadsClass()
-  
-
     
     
     @Environment(\.dismiss) var dismiss
@@ -44,26 +41,18 @@ struct GameView: View {
                     padsGameView
 //                    PadsGame()
                 }
-                .frame(width: geometry.size.width * 0.24, height: geometry.size.height * 0.85)
+                .frame(width: geometry.size.width * 0.24, height: geometry.size.height * 0.75)
 //                .frame(width: geometry.size.width * 0.24)
                 
                 HStack{
                     if startGame {
-//                        messageView
-//                        if padsGameView.padsViewModel.playerCanplay {
-//                            Text("  Pode jogar amigao   ")
-//                                .font(.system(.title, design: .rounded) .weight(.semibold))
-//                                .foregroundColor(.white)
-//                                .background(.black)
-//                                .opacity(0.85)
-//                        }
-                        
+                        padsViewModel.playerCanplay ?
+                        Text("  Sua vez amigo   ").background(.black) : Text("  Espera um pouco ").background(.red)
                     }
                 }
                 .frame(width: geometry.size.width, height: geometry.size.height * 0.9, alignment: .bottom)
-                
-                
-                
+                .foregroundColor(.white)
+                .font(.title)
                 
                 // Para aparecer em cima da view principal
                 if showCounter {
@@ -79,6 +68,8 @@ struct GameView: View {
             showCounter = true
             
         }
+        
+//
         
         .onChange(of: startGame){ newValue in
             //Aqui é so para modo desafio
