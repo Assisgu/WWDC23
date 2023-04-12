@@ -9,6 +9,8 @@ import SwiftUI
 
 struct HomeView: View {
     @State var highScore: Bool = false
+    @State var bestScore: Int = 0
+    @StateObject var padsViewModel = PadsClass.shared
     
     var body: some View {
             GeometryReader { geometry in
@@ -41,8 +43,8 @@ struct HomeView: View {
                     .frame(width: geometry.size.width, height: geometry.size.height, alignment: .top)
                     
                     VStack{
-                        if highScore {
-                            Text ("High Score: 77")
+                        if bestScore > 0 {
+                            Text ("High Score: \(bestScore)")
                                 .foregroundColor(.white)
                                 .frame(alignment: .bottomLeading)
                         }
@@ -62,6 +64,10 @@ struct HomeView: View {
             }
             .ignoresSafeArea()
             .navigationBarHidden(true)
+        
+            .onAppear{
+                self.bestScore = padsViewModel.scoreClass.highScore
+            }
 
     }
 }

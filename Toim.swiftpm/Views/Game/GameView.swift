@@ -10,9 +10,9 @@ import SwiftUI
 struct GameView: View {
     
     @State var showCounter: Bool = false
-//    @State var startGame: Bool = false
-//    @State var gameOver: Bool = false
-//    @State var buttonPressed = false
+    //    @State var startGame: Bool = false
+    //    @State var gameOver: Bool = false
+    //    @State var buttonPressed = false
     
     @StateObject var padsViewModel = PadsClass.shared
     
@@ -41,10 +41,10 @@ struct GameView: View {
                 
                 VStack {
                     padsGameView
-//                    PadsGame()
+                    //                    PadsGame()
                 }
                 .frame(width: geometry.size.width * 0.24, height: geometry.size.height * 0.75)
-//                .frame(width: geometry.size.width * 0.24)
+                //                .frame(width: geometry.size.width * 0.24)
                 
                 HStack{
                     if padsViewModel.startGame {
@@ -65,14 +65,14 @@ struct GameView: View {
                     ZStack{
                         Color(.black)
                             .opacity(0.95)
-                        GameOverView(showCounter: $showCounter, gameOver: $padsViewModel.gameOver
+                        GameOverView(showCounter: $showCounter, gameOver: $padsViewModel.gameOver, hasHighScore: $padsViewModel.hasHighScore, currentScore: $padsViewModel.currentScore
                         )
                     }
+                    .frame(width: geometry.size.width, height: geometry.size.height)
                 }
                 
             }
             .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
-            
         }
         .ignoresSafeArea()
         
@@ -80,20 +80,20 @@ struct GameView: View {
             showCounter = true
         }
         
-//        .onDisappear{
-//            //Criar funcao de zerar tudo
-//            padsViewModel.gameSequence.removeAll()
-//        }
+        //        .onDisappear{
+        //            //Criar funcao de zerar tudo
+        //            padsViewModel.gameSequence.removeAll()
+        //        }
         
-//
+        //
         
         .onChange(of: padsViewModel.startGame){ newValue in
             //Aqui é so para modo desafio
             // Modo free -> padsViewModel.playerCanplay = true
             if padsViewModel.startGame {
-                padsGameView.padsViewModel.getSequence()                
+                padsGameView.padsViewModel.getSequence()
             }
-//            padsViewModel.getSequence()
+            //            padsViewModel.getSequence()
         }
     }
 }

@@ -12,6 +12,8 @@ struct GameOverView: View {
     
     @Binding var showCounter: Bool
     @Binding var gameOver: Bool
+    @Binding var hasHighScore: Bool
+    @Binding var currentScore: Int
 //    @Binding var startGame: Bool
     
     
@@ -32,12 +34,11 @@ struct GameOverView: View {
                     
                     VStack(spacing: 0) {
                         HStack {
-                            Text("Você fez 19 pontos")
+                            Text("Você fez \(currentScore) pontos")
                         }.frame(height: geometry.size.height * 0.1)
                         Divider()
                         HStack {
                             Button {
-                                print("tryagainn")
                                 self.gameOver = false
                                 self.showCounter = true
 //                                self.startGame = false
@@ -51,7 +52,6 @@ struct GameOverView: View {
                         Divider()
                         HStack {
                             Button {
-                                print("Quit")
                                 self.gameOver = false
                                 dismiss()
                             } label: {
@@ -72,7 +72,7 @@ struct GameOverView: View {
             
             //Image
             VStack{
-                if highScore {
+                if hasHighScore {
                     Image("record")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
@@ -87,11 +87,10 @@ struct GameOverView: View {
             }
             .padding(.top, 30)
             
-            
             //Image
             VStack {
                 VStack{
-                    if highScore {
+                    if hasHighScore {
                         Image("toim-record")
                             .resizable()
                             .aspectRatio(contentMode: .fit)
@@ -105,7 +104,8 @@ struct GameOverView: View {
                 
             }
             .frame(width: geometry.size.width, height: geometry.size.height * 0.98, alignment: .bottom)
-        } .ignoresSafeArea()
+        }
+        .ignoresSafeArea()
     }
 }
 

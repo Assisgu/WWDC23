@@ -10,21 +10,22 @@ import SwiftUI
 
 class PadsClass: ObservableObject {
     
-    static let shared = PadsClass()
     @Published var lightGreen: Bool = false
     @Published var lightYellow: Bool = false
     @Published var lightRed: Bool = false
     @Published var lightBlue: Bool = false
     @Published var playerCanplay: Bool = false
-    
     @Published var gameOver: Bool = false
     @Published var startGame: Bool = false
+    @Published var hasHighScore: Bool = false
+    @Published var currentScore: Int = 0
     
     var playerSequence = [String]()
     var gameSequence = [String]()
     var countTouchs: Int = 0
     
     let scoreClass = ScoreClass()
+    static let shared = PadsClass()
     
     
     func turnOnLight(color: Int){
@@ -175,7 +176,7 @@ class PadsClass: ObservableObject {
             self.playerCanplay = false
             
             if checkAnswer(sequence: gameSequence, playerSequence: self.playerSequence){
-                delay(1.3){
+                delay(1.2){
                     self.getSequence()
                 }
             } else {
@@ -193,6 +194,10 @@ class PadsClass: ObservableObject {
             self.playerSequence.removeAll()
             self.countTouchs = 0
             self.scoreClass.addScore()
+            if self.scoreClass.saveHighScore() {
+                self.hasHighScore = true
+            }
+            self.currentScore = self.scoreClass.score
             return true
         } else {
             print("Errou 😦")
