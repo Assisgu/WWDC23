@@ -146,8 +146,8 @@ class PadsClass: ObservableObject {
         default:
             atualColor = "undefined"
         }
-        
         newSequence.append(atualColor)
+        print("sequencia \(newSequence)")
         return newSequence
         
     }
@@ -180,6 +180,9 @@ class PadsClass: ObservableObject {
                 }
             } else {
                 print("fim da linha 🕳️")
+                self.playerSequence.removeAll()
+                self.gameSequence.removeAll()
+
             }
         }
     }
