@@ -10,6 +10,13 @@ import SwiftUI
 struct GameOverView: View {
     @State var highScore: Bool = false
     
+    @Binding var showCounter: Bool
+    @Binding var gameOver: Bool
+//    @Binding var startGame: Bool
+    
+    
+    @Environment(\.dismiss) var dismiss
+    
     var body: some View {
         GeometryReader { geometry in
             ZStack{
@@ -21,7 +28,7 @@ struct GameOverView: View {
                 ZStack {
                     RoundedRectangle(cornerRadius: 30)
                         .foregroundColor(.white)
-                        .opacity(0.4)
+                        .opacity(0.6)
                     
                     VStack(spacing: 0) {
                         HStack {
@@ -31,6 +38,10 @@ struct GameOverView: View {
                         HStack {
                             Button {
                                 print("tryagainn")
+                                self.gameOver = false
+                                self.showCounter = true
+//                                self.startGame = false
+
                             } label: {
                                 Text("Try again")
                                     .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.1)
@@ -41,6 +52,8 @@ struct GameOverView: View {
                         HStack {
                             Button {
                                 print("Quit")
+                                self.gameOver = false
+                                dismiss()
                             } label: {
                                 Text("Quit")
                                     .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.1)
@@ -96,8 +109,8 @@ struct GameOverView: View {
     }
 }
 
-struct GameOverView_Previews: PreviewProvider {
-    static var previews: some View {
-        GameOverView()
-    }
-}
+//struct GameOverView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        GameOverView()
+//    }
+//}

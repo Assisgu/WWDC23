@@ -17,9 +17,14 @@ class PadsClass: ObservableObject {
     @Published var lightBlue: Bool = false
     @Published var playerCanplay: Bool = false
     
+    @Published var gameOver: Bool = false
+    @Published var startGame: Bool = false
+    
     var playerSequence = [String]()
     var gameSequence = [String]()
     var countTouchs: Int = 0
+    
+    let scoreClass = ScoreClass()
     
     
     func turnOnLight(color: Int){
@@ -116,7 +121,6 @@ class PadsClass: ObservableObject {
             default:
                 print("default")
             }
-            
         }
         
         delay(count){
@@ -158,7 +162,7 @@ class PadsClass: ObservableObject {
         walksSequence(seq: gameSequence)
     }
     
-    func startGame(){
+    func starttGame(){
         getSequence()
     }
     
@@ -184,12 +188,17 @@ class PadsClass: ObservableObject {
         if sequence == playerSequence {
             print("Acertou 🥶")
             self.playerSequence.removeAll()
-            countTouchs = 0
+            self.countTouchs = 0
+            self.scoreClass.addScore()
             return true
         } else {
             print("Errou 😦")
             self.playerSequence.removeAll()
             self.gameSequence.removeAll()
+            self.countTouchs = 0
+            self.startGame = false
+            self.gameOver = true
+            self.scoreClass.resetScore()
             return false
         }
     }

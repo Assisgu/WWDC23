@@ -7,7 +7,7 @@
 
 import Foundation
 
-class Score {
+class ScoreClass {
     
     var score: Int = 0
     var highScore: Int {

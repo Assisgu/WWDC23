@@ -13,6 +13,7 @@ struct CountView: View {
     @Binding var showCounter: Bool
     @Binding var startGame: Bool
     
+    
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
@@ -28,6 +29,9 @@ struct CountView: View {
                 .ignoresSafeArea()
             }
             .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
+//            .onDisappear{
+//                self.startGame = true
+//            }
         
         }
         
@@ -38,7 +42,9 @@ struct CountView: View {
                 } else if timeRemaning == 0 {
                     self.showCounter = false
                     self.startGame = true
+                    
                 }
+            
             }
         }
     }
