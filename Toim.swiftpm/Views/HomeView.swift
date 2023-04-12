@@ -52,6 +52,7 @@ struct HomeView: View {
                         NavigationLink(destination: GameView()) {
                             Text("START")
                                 .font(.system(size: geometry.size.width * 0.07).weight(.bold))
+                                .foregroundColor(.green)
                         }
                         .padding(.bottom, geometry.size.height * 0.02)
                         
