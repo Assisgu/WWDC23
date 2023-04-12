@@ -41,7 +41,6 @@ struct GameView: View {
                 
                 VStack {
                     padsGameView
-                    //                    PadsGame()
                 }
                 .frame(width: geometry.size.width * 0.24, height: geometry.size.height * 0.75)
                 //                .frame(width: geometry.size.width * 0.24)
@@ -62,13 +61,15 @@ struct GameView: View {
                 }
                 
                 if padsViewModel.gameOver{
-                    ZStack{
-                        Color(.black)
-                            .opacity(0.95)
+//                    ZStack{
+//                        Color(.black)
+//                            .opacity(0.7)
+//                    }  .frame(width: geometry.size.width, height: geometry.size.height)
+                        
                         GameOverView(showCounter: $showCounter, gameOver: $padsViewModel.gameOver, hasHighScore: $padsViewModel.hasHighScore, currentScore: $padsViewModel.currentScore
                         )
-                    }
-                    .frame(width: geometry.size.width, height: geometry.size.height)
+
+                    .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.8)
                 }
                 
             }
@@ -76,16 +77,25 @@ struct GameView: View {
         }
         .ignoresSafeArea()
         
+//        .navigationBarItems(
+//            trailing:
+//                Button("Quit") {
+//                    dismiss()
+//                }
+//        )
+        
         .onAppear{
             showCounter = true
         }
         
-        //        .onDisappear{
-        //            //Criar funcao de zerar tudo
-        //            padsViewModel.gameSequence.removeAll()
-        //        }
+        .onDisappear{
+            //Criar funcao de zerar tudo
+            padsViewModel.gameSequence.removeAll()
+            padsViewModel.startGame = false
+            
+        }
         
-        //
+        
         
         .onChange(of: padsViewModel.startGame){ newValue in
             //Aqui é so para modo desafio

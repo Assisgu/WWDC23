@@ -14,6 +14,7 @@ struct GameOverView: View {
     @Binding var gameOver: Bool
     @Binding var hasHighScore: Bool
     @Binding var currentScore: Int
+    
 //    @Binding var startGame: Bool
     
     
@@ -41,6 +42,7 @@ struct GameOverView: View {
                             Button {
                                 self.gameOver = false
                                 self.showCounter = true
+                                
 //                                self.startGame = false
 //                                self.currentScore = 0
 //                                self.highScore = false
@@ -55,8 +57,6 @@ struct GameOverView: View {
                         HStack {
                             Button {
                                 self.gameOver = false
-//                                self.currentScore = 0
-//                                self.highScore = false
                                 dismiss()
                             } label: {
                                 Text("Quit")
@@ -114,12 +114,15 @@ struct GameOverView: View {
         .onDisappear{
             self.currentScore = 0
             self.hasHighScore = false
+            self.gameOver = false
         }
     }
 }
 
 //struct GameOverView_Previews: PreviewProvider {
+//
 //    static var previews: some View {
-//        GameOverView()
+//
+//        GameOverView(showCounter: <#Binding<Bool>#>, gameOver: <#Binding<Bool>#>, hasHighScore: <#Binding<Bool>#>, currentScore: <#Binding<Int>#>)
 //    }
 //}
