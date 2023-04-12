@@ -90,10 +90,10 @@ struct GameView: View {
         .onChange(of: padsViewModel.startGame){ newValue in
             //Aqui é so para modo desafio
             // Modo free -> padsViewModel.playerCanplay = true
+            
             if padsViewModel.startGame {
                 padsGameView.padsViewModel.getSequence()
             }
-            //            padsViewModel.getSequence()
         }
     }
 }

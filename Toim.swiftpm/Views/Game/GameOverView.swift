@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct GameOverView: View {
-    @State var highScore: Bool = false
+//    @State var highScore: Bool = false
     
     @Binding var showCounter: Bool
     @Binding var gameOver: Bool
@@ -42,6 +42,8 @@ struct GameOverView: View {
                                 self.gameOver = false
                                 self.showCounter = true
 //                                self.startGame = false
+//                                self.currentScore = 0
+//                                self.highScore = false
 
                             } label: {
                                 Text("Try again")
@@ -53,6 +55,8 @@ struct GameOverView: View {
                         HStack {
                             Button {
                                 self.gameOver = false
+//                                self.currentScore = 0
+//                                self.highScore = false
                                 dismiss()
                             } label: {
                                 Text("Quit")
@@ -106,6 +110,11 @@ struct GameOverView: View {
             .frame(width: geometry.size.width, height: geometry.size.height * 0.98, alignment: .bottom)
         }
         .ignoresSafeArea()
+        
+        .onDisappear{
+            self.currentScore = 0
+            self.hasHighScore = false
+        }
     }
 }
 
