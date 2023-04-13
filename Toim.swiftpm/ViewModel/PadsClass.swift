@@ -186,7 +186,7 @@ class PadsClass: ObservableObject {
             self.playerCanplay = false
 
             if checkAnswer(sequence: gameSequence, playerSequence: self.playerSequence){
-                delay(1.2){
+                delay(1.1){
                     self.getSequence()
                 }
             } else {

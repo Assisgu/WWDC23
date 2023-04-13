@@ -45,8 +45,9 @@ struct GameView: View {
                     padsGameView
                 }
                 .frame(width: geometry.size.width * 0.24, height: geometry.size.height * 0.75)
-                //                .frame(width: geometry.size.width * 0.24)
                 
+                
+                //Message feedback
                 HStack{
                     if padsViewModel.startGame && !padsViewModel.modeFree {
                         padsViewModel.playerCanplay ?
@@ -63,15 +64,16 @@ struct GameView: View {
                 }
                 
                 if padsViewModel.gameOver{
-                    //                    ZStack{
-                    //                        Color(.black)
-                    //                            .opacity(0.7)
-                    //                    }  .frame(width: geometry.size.width, height: geometry.size.height)
-                    
-                    GameOverView(showCounter: $showCounter, gameOver: $padsViewModel.gameOver, hasHighScore: $padsViewModel.hasHighScore, currentScore: $padsViewModel.currentScore
-                    )
-                    
-                    .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.8)
+                                        ZStack{
+                                            Color(.black)
+                                                .opacity(0.9)
+                                            
+                                            GameOverView(showCounter: $showCounter, gameOver: $padsViewModel.gameOver, hasHighScore: $padsViewModel.hasHighScore, currentScore: $padsViewModel.currentScore
+                                            )
+                                            .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.8)
+                                            
+                                        }  .frame(width: geometry.size.width, height: geometry.size.height)
+
                 }
                 
             }

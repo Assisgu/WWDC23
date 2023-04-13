@@ -22,16 +22,16 @@ struct GameOverView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            ZStack{
-                Color(.black)
-                    .opacity(0.6)
-            }
+//            ZStack{
+//                Color(.black)
+//                    .opacity(0.6)
+//            }
             //Buttons
             VStack {
                 ZStack {
                     RoundedRectangle(cornerRadius: 30)
                         .foregroundColor(.white)
-                        .opacity(0.6)
+                        .opacity(0.75)
                     
                     VStack(spacing: 0) {
                         HStack {
@@ -42,11 +42,6 @@ struct GameOverView: View {
                             Button {
                                 self.gameOver = false
                                 self.showCounter = true
-                                
-//                                self.startGame = false
-//                                self.currentScore = 0
-//                                self.highScore = false
-
                             } label: {
                                 Text("Try again")
                                     .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.1)
@@ -80,16 +75,16 @@ struct GameOverView: View {
                     Image("record")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width, height: geometry.size.height * 0.15)
+                        .frame(width: geometry.size.width, height: geometry.size.height * 0.2)
                 } else {
                     Image("gameOver")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width, height: geometry.size.height * 0.15)
+                        .frame(width: geometry.size.width, height: geometry.size.height * 0.2)
                 }
                 
             }
-            .padding(.top, 30)
+
             
             //Image
             VStack {
