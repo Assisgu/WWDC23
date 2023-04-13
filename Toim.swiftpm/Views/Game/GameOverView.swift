@@ -22,10 +22,6 @@ struct GameOverView: View {
     
     var body: some View {
         GeometryReader { geometry in
-//            ZStack{
-//                Color(.black)
-//                    .opacity(0.6)
-//            }
             //Buttons
             VStack {
                 ZStack {
@@ -35,7 +31,7 @@ struct GameOverView: View {
                     
                     VStack(spacing: 0) {
                         HStack {
-                            Text("Você fez \(currentScore) pontos")
+                            Text("You scored \(currentScore) points")
                         }.frame(height: geometry.size.height * 0.1)
                         Divider()
                         HStack {
@@ -59,7 +55,7 @@ struct GameOverView: View {
                             }
                             
                         }.frame(height: geometry.size.height * 0.1)
-                    }.font(.system(.title))
+                    }.font(.system(.title) .weight(.medium))
                         .foregroundColor(.black)
                     
                 }
@@ -69,7 +65,7 @@ struct GameOverView: View {
             }
             .frame(width: geometry.size.width)
             
-            //Image
+            //Image banner
             VStack{
                 if hasHighScore {
                     Image("record")
@@ -86,7 +82,7 @@ struct GameOverView: View {
             }
 
             
-            //Image
+            //Image person
             VStack {
                 VStack{
                     if hasHighScore {

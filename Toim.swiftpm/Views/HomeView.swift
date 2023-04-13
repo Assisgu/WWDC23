@@ -15,9 +15,9 @@ struct HomeView: View {
     var body: some View {
             GeometryReader { geometry in
                 ZStack{
-//                    Color(.systemCyan)
-                    Color(red: 89/255, green: 111/255, blue: 130/255)
-                    
+
+                    Color(uiColor: UIColor(red: 0.164, green: 0.233, blue: 0.292, alpha: 1))
+//                    Color(.black)
                     Image("guitar")
                         .resizable()
                         .aspectRatio( contentMode: .fill)
@@ -45,6 +45,7 @@ struct HomeView: View {
                     VStack{
                         if bestScore > 0 {
                             Text ("High Score: \(bestScore)")
+                                .font(.system(.title3).weight(.medium))
                                 .foregroundColor(.white)
                                 .frame(alignment: .bottomLeading)
                         }
@@ -53,6 +54,8 @@ struct HomeView: View {
                             Text("START")
                                 .font(.system(size: geometry.size.width * 0.07).weight(.bold))
                                 .foregroundColor(.green)
+                            
+                                
                         }
                         .padding(.bottom, geometry.size.height * 0.02)
                         

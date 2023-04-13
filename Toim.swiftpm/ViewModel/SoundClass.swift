@@ -8,7 +8,7 @@
 import Foundation
 import AVFoundation
 
-class Sound {
+class SoundClass {
     var audioPlayer: AVAudioPlayer!
     
     func playSounds(_ soundFileName : String) {
@@ -22,4 +22,5 @@ class Sound {
         }
         audioPlayer.play()
     }
+    
 }

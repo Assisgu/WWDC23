@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct PadsGame: View {
     
     @ObservedObject var padsViewModel: PadsClass = PadsClass.shared
+    private let soundClass = SoundClass()
     
     var body: some View {
         GeometryReader { geometry in
@@ -23,6 +25,8 @@ struct PadsGame: View {
                     Button {
                         if padsViewModel.playerCanplay {
                             padsViewModel.turnOnLight(color: 1)
+                            padsViewModel.soundClass.playSounds("do")
+                            
                         }
                     } label: {
                         ZStack{
@@ -37,6 +41,7 @@ struct PadsGame: View {
                     Button {
                         if padsViewModel.playerCanplay {
                             padsViewModel.turnOnLight(color: 2)
+                            padsViewModel.soundClass.playSounds("re")
                         }
                     } label: {
                         ZStack{
@@ -51,6 +56,7 @@ struct PadsGame: View {
                     Button {
                         if padsViewModel.playerCanplay {
                             padsViewModel.turnOnLight(color: 3)
+                            padsViewModel.soundClass.playSounds("mi")
                         }
                     } label: {
                         ZStack{
@@ -65,6 +71,7 @@ struct PadsGame: View {
                     Button {
                         if padsViewModel.playerCanplay {
                             padsViewModel.turnOnLight(color: 4)
+                            padsViewModel.soundClass.playSounds("fa")
                         }
                     } label: {
                         ZStack{

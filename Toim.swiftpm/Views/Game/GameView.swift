@@ -10,10 +10,6 @@ import SwiftUI
 struct GameView: View {
     
     @State var showCounter: Bool = false
-    //    @State var startGame: Bool = false
-    //    @State var gameOver: Bool = false
-    //    @State var buttonPressed = false
-    
     @StateObject var padsViewModel = PadsClass.shared
     
     private let padsGameView = PadsGame()
@@ -24,7 +20,11 @@ struct GameView: View {
     var body: some View {
         GeometryReader { geometry in
             ZStack{
-                Color(red: 89/255, green: 111/255, blue: 130/255)
+                if padsViewModel.playerCanplay {
+                    Color(uiColor: UIColor(red: 0.673, green: 0.753, blue: 0.624, alpha: 1))
+                } else {
+                    Color(uiColor: UIColor(red: 0.164, green: 0.233, blue: 0.292, alpha: 1))
+                }
                 
                 Image("guitar-game")
                     .resizable()
@@ -34,6 +34,7 @@ struct GameView: View {
                     Spacer()
                     if !padsViewModel.modeFree{
                         Text("Score: \(padsViewModel.scoreClass.score)")
+                            .font(.system(.title, design: .rounded).weight(.medium))
                     }
                 }
                 .padding(.all, geometry.size.width * 0.05)
@@ -49,14 +50,21 @@ struct GameView: View {
                 
                 //Message feedback
                 HStack{
-                    if padsViewModel.startGame && !padsViewModel.modeFree {
-                        padsViewModel.playerCanplay ?
-                        Text("  Sua vez amigo   ").background(.black) : Text("  Espera um pouco ").background(.red)
+                    VStack{
+                        if padsViewModel.startGame && !padsViewModel.modeFree {
+                            padsViewModel.playerCanplay ?
+                            Text("  You turn to play   ") : Text("  Memorize the sequence ")
+                            
+                        }
                     }
+                    .foregroundColor(.white)
+                    .background(.black)
+                    .font(.system(.title, design: .rounded).weight(.light))
                 }
                 .frame(width: geometry.size.width, height: geometry.size.height * 0.9, alignment: .bottom)
-                .foregroundColor(.white)
-                .font(.title)
+                
+
+                
                 
                 // Para aparecer em cima da view principal
                 if showCounter {
@@ -90,12 +98,19 @@ struct GameView: View {
         
         .onAppear{
             showCounter = true
+            padsViewModel.gameOver = false
+            
         }
         
         .onDisappear{
             //Criar funcao de zerar tudo
             padsViewModel.gameSequence.removeAll()
             padsViewModel.startGame = false
+            padsViewModel.gameOver = true
+            padsViewModel.scoreClass.resetScore()
+            padsViewModel.currentScore = 0
+            
+            
         }
         
         

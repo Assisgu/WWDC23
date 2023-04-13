@@ -23,15 +23,13 @@ struct CountView: View {
                     Color(.black)
                         .opacity(0.6)
                     Text("\(timeRemaning)")
-                        .font(.system(size: geometry.size.width * 0.3) .weight(.medium))
+                        .font(.system(size: geometry.size.width * 0.3) .weight(.ultraLight))
                         .foregroundColor(.white)
                 }
                 .ignoresSafeArea()
             }
             .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
-//            .onDisappear{
-//                self.startGame = true
-//            }
+
         
         }
         

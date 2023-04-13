@@ -26,6 +26,7 @@ class PadsClass: ObservableObject {
     var gameSequence = [String]()
     var countTouchs: Int = 0
     
+    let soundClass = SoundClass()
     let scoreClass = ScoreClass()
     static let shared = PadsClass()
     
@@ -105,33 +106,39 @@ class PadsClass: ObservableObject {
             self.playerCanplay = false
             
             switch i {
+//                if 
             case "green":
                 delay(count){
                     self.turnOnLight(color: 1)
+                    self.soundClass.playSounds("do")
                 }
                 count += 1.5
                 
             case "yellow":
                 delay(count){
                     self.turnOnLight(color: 2)
+                    self.soundClass.playSounds("re")
                 }
                 count += 1.5
                 
             case "red":
                 delay(count){
                     self.turnOnLight(color: 3)
+                    self.soundClass.playSounds("mi")
                 }
                 count += 1.5
                 
             case "blue":
                 delay(count){
                     self.turnOnLight(color: 4)
+                    self.soundClass.playSounds("fa")
                 }
                 count += 1.5
                 
             default:
                 print("default")
             }
+            
         }
         
         delay(count){

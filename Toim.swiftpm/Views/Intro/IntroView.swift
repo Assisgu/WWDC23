@@ -22,17 +22,17 @@ struct IntroView: View {
         
             GeometryReader { geometry in
                 ZStack{
-                    Color(red: 89/255, green: 111/255, blue: 130/255)
+//                    Color(red: 89/255, green: 111/255, blue: 130/255)
+                    Color(uiColor: UIColor(red: 0.164, green: 0.233, blue: 0.292, alpha: 1))
                 }
                 
                 VStack(spacing: 0) {
                     HStack {
                         Text("\(textIntro[index])")
-                            .font(.system(.largeTitle, design: .rounded) .weight(.semibold))
+                            .font(.system(.largeTitle) .weight(.light))
                     }
                     .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.3)
                                         
-                    
                     HStack {
                         Image("toim-intro")
                             .resizable()
@@ -49,7 +49,11 @@ struct IntroView: View {
                                     prepared = false
                                 }
                             } label: {
-                                Text("Back")
+                                HStack{
+                                    Image(systemName: "chevron.left")
+                                    Text("Back")
+                                }
+                                .font(.system(.title).weight(.light))
                             }
                         }
                         Spacer()
@@ -61,11 +65,20 @@ struct IntroView: View {
                                     prepared = true
                                 }
                             } label: {
-                                Text("Continue")
+                                    HStack{
+                                        Text("Next")
+                                        Image(systemName: "chevron.right")
+                                    }
+                                    .font(.system(.title).weight(.light))
+//
                             }
                         } else {
                             NavigationLink(destination: HomeView()) {
-                                Text("Lets go")
+                                HStack{
+                                    Text("Lets go")
+                                    Image(systemName: "chevron.right.2")
+                                }
+                                    .font(.system(.title).weight(.light))
                             }
                         }
                     }
@@ -75,14 +88,7 @@ struct IntroView: View {
                 .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
                 .foregroundColor(.white)
                 
-//                .onTapGesture {
-//                    if index < textIntro.count - 1 {
-//                        index += 1
-//                    } else {
-//                        index = 0
-//                        start = true
-//                    }
-//                }
+
             }
             .navigationBarHidden(true)
             .ignoresSafeArea()
