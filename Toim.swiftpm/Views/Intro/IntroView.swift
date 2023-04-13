@@ -24,6 +24,9 @@ struct IntroView: View {
                 ZStack{
 //                    Color(red: 89/255, green: 111/255, blue: 130/255)
                     Color(uiColor: UIColor(red: 0.164, green: 0.233, blue: 0.292, alpha: 1))
+                    
+                    Image("bg")
+                        .opacity(0.8)
                 }
                 
                 VStack(spacing: 0) {

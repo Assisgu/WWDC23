@@ -21,7 +21,7 @@ struct GameView: View {
         GeometryReader { geometry in
             ZStack{
                 if padsViewModel.playerCanplay {
-                    Color(uiColor: UIColor(red: 0.673, green: 0.753, blue: 0.624, alpha: 1))
+                    Color(uiColor: UIColor(red: 0.179, green: 0.356, blue: 0.512, alpha: 1))
                 } else {
                     Color(uiColor: UIColor(red: 0.164, green: 0.233, blue: 0.292, alpha: 1))
                 }

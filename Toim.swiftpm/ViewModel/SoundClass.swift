@@ -22,5 +22,4 @@ class SoundClass {
         }
         audioPlayer.play()
     }
-    
 }
