@@ -25,8 +25,14 @@ struct IntroView: View {
 //                    Color(red: 89/255, green: 111/255, blue: 130/255)
                     Color(uiColor: UIColor(red: 0.164, green: 0.233, blue: 0.292, alpha: 1))
                     
-                    Image("bg")
-                        .opacity(0.8)
+                    VStack{
+                        Image("bg")
+                            .resizable()
+                            .aspectRatio(contentMode: .fill)
+                            .opacity(0.8)
+                    }
+                    .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
+                        
                 }
                 
                 VStack(spacing: 0) {
