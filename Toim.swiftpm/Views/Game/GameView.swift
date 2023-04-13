@@ -32,7 +32,9 @@ struct GameView: View {
                 
                 HStack{
                     Spacer()
-                    Text("Score: \(padsViewModel.scoreClass.score)")
+                    if !padsViewModel.modeFree{
+                        Text("Score: \(padsViewModel.scoreClass.score)")
+                    }
                 }
                 .padding(.all, geometry.size.width * 0.05)
                 .foregroundColor(.white)
@@ -46,7 +48,7 @@ struct GameView: View {
                 //                .frame(width: geometry.size.width * 0.24)
                 
                 HStack{
-                    if padsViewModel.startGame {
+                    if padsViewModel.startGame && !padsViewModel.modeFree {
                         padsViewModel.playerCanplay ?
                         Text("  Sua vez amigo   ").background(.black) : Text("  Espera um pouco ").background(.red)
                     }
@@ -61,14 +63,14 @@ struct GameView: View {
                 }
                 
                 if padsViewModel.gameOver{
-//                    ZStack{
-//                        Color(.black)
-//                            .opacity(0.7)
-//                    }  .frame(width: geometry.size.width, height: geometry.size.height)
-                        
-                        GameOverView(showCounter: $showCounter, gameOver: $padsViewModel.gameOver, hasHighScore: $padsViewModel.hasHighScore, currentScore: $padsViewModel.currentScore
-                        )
-
+                    //                    ZStack{
+                    //                        Color(.black)
+                    //                            .opacity(0.7)
+                    //                    }  .frame(width: geometry.size.width, height: geometry.size.height)
+                    
+                    GameOverView(showCounter: $showCounter, gameOver: $padsViewModel.gameOver, hasHighScore: $padsViewModel.hasHighScore, currentScore: $padsViewModel.currentScore
+                    )
+                    
                     .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.8)
                 }
                 
@@ -77,12 +79,12 @@ struct GameView: View {
         }
         .ignoresSafeArea()
         
-//        .navigationBarItems(
-//            trailing:
-//                Button("Quit") {
-//                    dismiss()
-//                }
-//        )
+        //        .navigationBarItems(
+        //            trailing:
+        //                Button("Quit") {
+        //                    dismiss()
+        //                }
+        //        )
         
         .onAppear{
             showCounter = true
@@ -92,18 +94,20 @@ struct GameView: View {
             //Criar funcao de zerar tudo
             padsViewModel.gameSequence.removeAll()
             padsViewModel.startGame = false
-            
         }
         
         
         
         .onChange(of: padsViewModel.startGame){ newValue in
-            //Aqui é so para modo desafio
-            // Modo free -> padsViewModel.playerCanplay = true
-            
+            //Modo desafio
             if padsViewModel.startGame {
                 padsGameView.padsViewModel.getSequence()
             }
+            
+            // Modo free
+            // padsViewModel.playerCanplay = true
+            // padsViewModel.modeFree = true
+
         }
     }
 }

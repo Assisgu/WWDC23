@@ -20,6 +20,8 @@ class PadsClass: ObservableObject {
     @Published var hasHighScore: Bool = false
     @Published var currentScore: Int = 0
     
+    @Published var modeFree: Bool = false
+    
     var playerSequence = [String]()
     var gameSequence = [String]()
     var countTouchs: Int = 0
@@ -40,7 +42,9 @@ class PadsClass: ObservableObject {
             if playerCanplay {
                 self.playerSequence.append("green")
                 self.countTouchs += 1
-                checkTouchs(amountTouchs: countTouchs)
+                if !modeFree {
+                    checkTouchs(amountTouchs: countTouchs)
+                }
             }
             
         case 2:
@@ -53,7 +57,9 @@ class PadsClass: ObservableObject {
             if playerCanplay {
                 self.playerSequence.append("yellow")
                 self.countTouchs += 1
-                checkTouchs(amountTouchs: countTouchs)
+                if !modeFree{
+                    checkTouchs(amountTouchs: countTouchs)
+                }
             }
             
         case 3:
@@ -66,7 +72,9 @@ class PadsClass: ObservableObject {
             if playerCanplay {
                 self.playerSequence.append("red")
                 self.countTouchs += 1
-                checkTouchs(amountTouchs: countTouchs)
+                if !modeFree{
+                    checkTouchs(amountTouchs: countTouchs)
+                }
             }
             
         case 4:
@@ -79,7 +87,9 @@ class PadsClass: ObservableObject {
             if playerCanplay {
                 self.playerSequence.append("blue")
                 self.countTouchs += 1
-                checkTouchs(amountTouchs: countTouchs)
+                if !modeFree{
+                    checkTouchs(amountTouchs: countTouchs)
+                }
             }
 
         default:
@@ -174,7 +184,7 @@ class PadsClass: ObservableObject {
     func checkTouchs(amountTouchs: Int){
         if amountTouchs >= self.gameSequence.count{
             self.playerCanplay = false
-            
+
             if checkAnswer(sequence: gameSequence, playerSequence: self.playerSequence){
                 delay(1.2){
                     self.getSequence()
