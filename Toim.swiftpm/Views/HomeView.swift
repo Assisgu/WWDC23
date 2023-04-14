@@ -10,26 +10,33 @@ import SwiftUI
 struct HomeView: View {
     @State var highScore: Bool = false
     @State var bestScore: Int = 0
+    @State private var showInfoSheet = false
+    @State private var showConfigSheet = false
     @StateObject var padsViewModel = PadsClass.shared
     
     var body: some View {
             GeometryReader { geometry in
                 ZStack{
-
                     Color(uiColor: UIColor(red: 0.164, green: 0.233, blue: 0.292, alpha: 1))
-//                    Color(.black)
+
                     Image("guitar")
                         .resizable()
                         .aspectRatio( contentMode: .fill)
                     
                     HStack{
-                        NavigationLink {
-                           InfoView()
+                        
+                        Button {
+                            showInfoSheet.toggle()
                         } label: {
                             Image(systemName: "info.circle")
                                 .font(.system(size: geometry.size.width * 0.03))
                         }
+                        .sheet(isPresented: $showInfoSheet) {
+                            InfoView(videoName: "memoji")
+                        }
+
                         Spacer()
+                        
                         NavigationLink {
                             ConfigView()
                         } label: {

@@ -66,20 +66,21 @@ struct GameOverView: View {
             .frame(width: geometry.size.width)
             
             //Image banner
-            VStack{
+            VStack(){
                 if hasHighScore {
                     Image("record")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width, height: geometry.size.height * 0.2)
+                        .frame(width: geometry.size.width, height: geometry.size.height * 0.18)
                 } else {
                     Image("gameOver")
                         .resizable()
                         .aspectRatio(contentMode: .fit)
-                        .frame(width: geometry.size.width, height: geometry.size.height * 0.2)
+                        .frame(width: geometry.size.width, height: geometry.size.height * 0.18)
                 }
                 
             }
+            .padding(.top, -20)
 
             
             //Image person
