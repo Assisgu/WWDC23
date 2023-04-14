@@ -8,15 +8,13 @@
 import SwiftUI
 
 struct GameOverView: View {
-//    @State var highScore: Bool = false
+
     
     @Binding var showCounter: Bool
     @Binding var gameOver: Bool
     @Binding var hasHighScore: Bool
     @Binding var currentScore: Int
-    
-//    @Binding var startGame: Bool
-    
+    @State var classSound = SoundClass()
     
     @Environment(\.dismiss) var dismiss
     
@@ -107,6 +105,13 @@ struct GameOverView: View {
             self.currentScore = 0
             self.hasHighScore = false
             self.gameOver = false
+        }
+        .onAppear{
+            if hasHighScore {
+                classSound.playSounds("record")
+            } else {
+                classSound.playSounds("error")
+            }
         }
     }
 }
