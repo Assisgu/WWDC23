@@ -8,6 +8,9 @@
 import SwiftUI
 import AVKit
 
+// MARK: - AboutMe
+/* Creates a About-me view */
+
 struct InfoView: View {
     let player: AVPlayer
     private var textClass = TextClass()

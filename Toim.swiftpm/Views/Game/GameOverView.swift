@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+// MARK: - GameOverView
+/* Creates the game over view */
+
 struct GameOverView: View {
 
     @Binding var showCounter: Bool

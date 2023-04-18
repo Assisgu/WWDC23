@@ -7,6 +7,9 @@
 
 import Foundation
 
+// MARK: - Toim
+/* Toim model text */
+
 class TextClass {
     public var intro: [String] = ["Hello, is there anyone here who can help me?",
                                   

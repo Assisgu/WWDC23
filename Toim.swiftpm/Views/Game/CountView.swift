@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+// MARK: - CountView
+/* Creates the view of a countdown timer */
+
 struct CountView: View {
     
     @State private var timeRemaning: Int = 3

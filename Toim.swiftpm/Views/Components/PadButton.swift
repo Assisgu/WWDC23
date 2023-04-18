@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+
+// MARK: - ShapeButton
+/* Create the button shape */
 struct PadButton: View {
     var color : Color
     var body: some View {
@@ -15,6 +18,8 @@ struct PadButton: View {
     }
 }
 
+// MARK: - Button Light
+/* Create light effect on button */
 struct PadLight: View {
     var body: some View{
         PadButton(color: .white)

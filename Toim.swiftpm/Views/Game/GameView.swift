@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+// MARK: - GameView
+/* Creates the game view */
+
 struct GameView: View {
     private let padsGameView = PadsGame()
     @Binding var modeFree: Bool

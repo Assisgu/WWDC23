@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+// MARK: - HomeView
+/* Home screen view */
+
 struct HomeView: View {
     @State var highScore: Bool = false
     @State var modeFree: Bool = false

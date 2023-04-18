@@ -8,6 +8,8 @@
 import Foundation
 import AVFoundation
 
+// MARK: - Sound
+/* Create function to play audio */
 class SoundClass {
     var audioPlayer: AVAudioPlayer?
 

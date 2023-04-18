@@ -7,6 +7,9 @@
 
 import Foundation
 
+// MARK: - ScoreClass
+/* Creates class Score*/
+
 class ScoreClass {
     
     var score: Int = 0

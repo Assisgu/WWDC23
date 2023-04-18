@@ -7,6 +7,9 @@
 
 import SwiftUI
 
+// MARK: - Introducion
+/* Create an intro view */
+
 struct IntroView: View {
     @State private var index: Int = 0
     @State var start: Bool = false

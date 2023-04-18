@@ -8,6 +8,8 @@
 import SwiftUI
 import AVFoundation
 
+// MARK: - PadsGame
+/* Creates game buttons component */
 struct PadsGame: View {
     
     @ObservedObject var padsViewModel: PadsClass = PadsClass.shared
@@ -86,6 +88,8 @@ struct PadsGame: View {
     }
 }
 
+// MARK: - NoAnim Button
+/* Remove button click animation */
 struct NoAnim: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {
         configuration.label

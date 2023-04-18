@@ -29,6 +29,8 @@ class PadsClass: ObservableObject {
     let scoreClass = ScoreClass()
     static let shared = PadsClass()
     
+    // MARK: - TurnOnLight
+    /* Turn on the button light */
     func turnOnLight(color: Int){
         switch color {
             
@@ -97,6 +99,8 @@ class PadsClass: ObservableObject {
         }
     }
     
+    // MARK: - Walks Sequence
+    /* Receives an array of string and executes a sequence */
     func walksSequence(seq: [String]){
         let sequence = seq
         var count = 0.0
@@ -144,7 +148,9 @@ class PadsClass: ObservableObject {
             self.playerCanplay = true
         }
     }
-    
+   
+    // MARK: - Generate Sequence
+    /* Generate a random sequence */
     func generateSequence(seq: [String]) -> [String]{
         let number = Int.random(in: 1...4)
         var newSequence = seq
@@ -166,11 +172,15 @@ class PadsClass: ObservableObject {
         return newSequence 
     }
     
+    // MARK: - Delay
+    /* Wait a while */
     func delay(_ delay:Double, closure:@escaping ()->()) {
         DispatchQueue.main.asyncAfter(
             deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
     }
     
+    // MARK: - Check Touches
+    /* Check number of touches */
     func checkTouchs(amountTouchs: Int){
         if amountTouchs >= self.gameSequence.count{
             self.playerCanplay = false
@@ -187,6 +197,8 @@ class PadsClass: ObservableObject {
         }
     }
     
+    // MARK: - Check Answer
+    /* Check user response */
     func checkAnswer(sequence: [String], playerSequence: [String]) -> Bool {
         if sequence == playerSequence {
             correctAnswer()
@@ -197,21 +209,29 @@ class PadsClass: ObservableObject {
         }
     }
     
+    // MARK: - Get Sequence
+    /*  Generates a new sequence and traverses */
     func getSequence(){
         self.gameSequence = generateSequence(seq: gameSequence)
         walksSequence(seq: gameSequence)
     }
     
+    // MARK: - Start Game
+    /*  Start the game in challenge mode */
     func startChallenge(){
         getSequence()
         self.modeFree = false
     }
     
+    // MARK: - Start Free
+    /*  Start the game in free mode */
     func startFree(){
         self.playerCanplay = true
         self.modeFree = true
     }
     
+    // MARK: - Reset All
+    /*  Reset the game when losing */
     func resetAll(){
         self.gameSequence.removeAll()
         self.playerSequence.removeAll()
@@ -221,6 +241,8 @@ class PadsClass: ObservableObject {
         self.gameOver = true
     }
     
+    // MARK: - Correct Answer
+    /*  Adds score and prepares to execute new sequence */
     func correctAnswer(){
         self.playerSequence.removeAll()
         self.countTouchs = 0
@@ -230,5 +252,5 @@ class PadsClass: ObservableObject {
         }
         self.currentScore = self.scoreClass.score
     }
-         
+     
 }

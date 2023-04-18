@@ -8,6 +8,8 @@
 import Foundation
 import AVKit
 
+// MARK: - LoopVideo
+/* Create function to play video in loop*/
 func loopVideo(named videoName: String) -> AVPlayer{
     let url = Bundle.main.url(forResource: videoName, withExtension: "mp4")!
     let player = AVPlayer(url: url)
