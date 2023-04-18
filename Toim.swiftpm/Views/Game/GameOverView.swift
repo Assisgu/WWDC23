@@ -9,7 +9,6 @@ import SwiftUI
 
 struct GameOverView: View {
 
-    
     @Binding var showCounter: Bool
     @Binding var gameOver: Bool
     @Binding var hasHighScore: Bool
@@ -19,7 +18,6 @@ struct GameOverView: View {
     
     var body: some View {
         GeometryReader { geometry in
-            //Buttons
             VStack {
                 ZStack {
                     RoundedRectangle(cornerRadius: 30)
@@ -63,7 +61,6 @@ struct GameOverView: View {
             }
             .frame(width: geometry.size.width)
             
-            //Image banner
             VStack(){
                 if hasHighScore {
                     Image("record")
@@ -80,7 +77,6 @@ struct GameOverView: View {
             }
             .padding(.top, -20)
             
-            //Image person
             VStack {
                 VStack{
                     if hasHighScore {

@@ -43,7 +43,6 @@ struct GameView: View {
                 }
                 .frame(width: geometry.size.width * 0.24, height: geometry.size.height * 0.75)
                 
-                //Message feedback
                 HStack{
                     VStack{
                         if padsViewModel.startGame && !padsViewModel.modeFree {
@@ -91,14 +90,11 @@ struct GameView: View {
         }
         
         .onChange(of: padsViewModel.startGame){ newValue in
-            
             if modeFree {
                 padsViewModel.startFree()
             } else if padsViewModel.startGame {
                 padsGameView.padsViewModel.startChallenge()
             }
-            
-
         }
     }
 }

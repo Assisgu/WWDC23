@@ -10,7 +10,7 @@ import AVFoundation
 
 class SoundClass {
     var audioPlayer: AVAudioPlayer?
-    
+
     func playSounds(_ soundFileName : String) {
         
         guard let soundURL = Bundle.main.url(forResource: soundFileName, withExtension: "mp3") else {
@@ -23,6 +23,5 @@ class SoundClass {
         } catch {
             print(error.localizedDescription)
         }
-       
     }
 }

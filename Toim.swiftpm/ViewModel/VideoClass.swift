@@ -19,6 +19,5 @@ func loopVideo(named videoName: String) -> AVPlayer{
        }
     
     player.play()
-    
     return player
 }

@@ -12,8 +12,6 @@ struct CountView: View {
     @State private var timeRemaning: Int = 3
     @Binding var showCounter: Bool
     @Binding var startGame: Bool
-    
-    
     let timer = Timer.publish(every: 1, on: .main, in: .common).autoconnect()
     
     var body: some View {
@@ -29,10 +27,7 @@ struct CountView: View {
                 .ignoresSafeArea()
             }
             .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
-
-        
         }
-        
         .onReceive(timer) { time in
             if showCounter {
                 if timeRemaning > 0 {

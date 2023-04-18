@@ -26,6 +26,4 @@ My contact with technology was a matter of overcoming obstacles. When I was youn
 So, I started studying internet systems at college, where I had the opportunity to become part of the Apple Developer Academy.
 """
     
-    
-    
 }

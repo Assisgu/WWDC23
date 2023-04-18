@@ -12,7 +12,7 @@ struct PadsGame: View {
     
     @ObservedObject var padsViewModel: PadsClass = PadsClass.shared
     private let soundClass = SoundClass()
-    
+
     var body: some View {
         GeometryReader { geometry in
             ZStack{
@@ -21,7 +21,6 @@ struct PadsGame: View {
                     .opacity(0.74)
                 
                 VStack(spacing: geometry.size.height * 0.03) {
-                    //Green
                     Button {
                         if padsViewModel.playerCanplay {
                             padsViewModel.turnOnLight(color: 1)
@@ -37,7 +36,6 @@ struct PadsGame: View {
                         }
                     }
                     
-                    //Yellow
                     Button {
                         if padsViewModel.playerCanplay {
                             padsViewModel.turnOnLight(color: 2)
@@ -52,7 +50,6 @@ struct PadsGame: View {
                         }
                     }
                     
-                    //Red
                     Button {
                         if padsViewModel.playerCanplay {
                             padsViewModel.turnOnLight(color: 3)
@@ -67,7 +64,6 @@ struct PadsGame: View {
                         }
                     }
                     
-                    //Blue
                     Button {
                         if padsViewModel.playerCanplay {
                             padsViewModel.turnOnLight(color: 4)
@@ -96,17 +92,3 @@ struct NoAnim: ButtonStyle {
     }
 }
 
-struct PadsGame_Previews: PreviewProvider {
-    static var previews: some View {
-        GeometryReader { geometry in
-            VStack{
-                PadsGame()
-                    .frame(width: geometry.size.width * 0.24, height: geometry.size.height * 0.75)
-                
-                
-            } .frame(width: geometry.size.width, height: geometry.size.height, alignment:  .center)
-            
-
-        }
-    }
-}

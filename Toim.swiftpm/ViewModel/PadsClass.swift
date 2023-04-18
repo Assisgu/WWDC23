@@ -31,6 +31,7 @@ class PadsClass: ObservableObject {
     
     func turnOnLight(color: Int){
         switch color {
+            
         case 1:
             lightGreen = true
             delay(0.8){
@@ -141,7 +142,6 @@ class PadsClass: ObservableObject {
         
         delay(count){
             self.playerCanplay = true
-            print("pode jogar agora")
         }
     }
     
@@ -163,9 +163,7 @@ class PadsClass: ObservableObject {
             atualColor = "undefined"
         }
         newSequence.append(atualColor)
-        print("sequencia \(newSequence)")
-        return newSequence
-        
+        return newSequence 
     }
     
     func delay(_ delay:Double, closure:@escaping ()->()) {
@@ -182,7 +180,6 @@ class PadsClass: ObservableObject {
                     self.getSequence()
                 }
             } else {
-                print("fim da linha 🕳️")
                 self.playerSequence.removeAll()
                 self.gameSequence.removeAll()
 
@@ -192,11 +189,9 @@ class PadsClass: ObservableObject {
     
     func checkAnswer(sequence: [String], playerSequence: [String]) -> Bool {
         if sequence == playerSequence {
-            print("Acertou 🥶")
             correctAnswer()
             return true
         } else {
-            print("Errou 😦")
             resetAll()
             return false
         }
@@ -235,8 +230,5 @@ class PadsClass: ObservableObject {
         }
         self.currentScore = self.scoreClass.score
     }
-    
-
-    
-        
+         
 }

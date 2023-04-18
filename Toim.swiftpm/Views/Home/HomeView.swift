@@ -25,9 +25,7 @@ struct HomeView: View {
                         .aspectRatio( contentMode: .fill)
                     
                     HStack{
-                        
                         Spacer()
-                        
                         Button {
                             showInfoSheet.toggle()
                         } label: {
@@ -37,7 +35,6 @@ struct HomeView: View {
                         .sheet(isPresented: $showInfoSheet) {
                             InfoView(videoName: "memoji")
                         }
-                        
                     }
                     .padding(.all, geometry.size.width * 0.05)
                     .foregroundColor(.white)
@@ -90,23 +87,13 @@ struct HomeView: View {
                   
                     }
                     .frame(height: geometry.size.height * 0.4)
-                    
                 }
                 .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
-                
             }
             .ignoresSafeArea()
             .navigationBarHidden(true)
-        
             .onAppear{
                 self.bestScore = padsViewModel.scoreClass.highScore
             }
-
-    }
-}
-
-struct HomeView_Previews: PreviewProvider {
-    static var previews: some View {
-        HomeView()
     }
 }

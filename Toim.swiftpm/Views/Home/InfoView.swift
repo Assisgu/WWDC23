@@ -11,7 +11,6 @@ import AVKit
 struct InfoView: View {
     let player: AVPlayer
     private var textClass = TextClass()
-//    private var textIntro : [String]
     
     init(videoName: String) {
         player = loopVideo(named: "memoji")
@@ -24,7 +23,6 @@ struct InfoView: View {
             }
             .ignoresSafeArea()
             VStack{
-    
                     ZStack {
                         Circle()
                             .foregroundColor(.green)
@@ -38,34 +36,22 @@ struct InfoView: View {
                 .frame(width: geometry.size.width * 0.3, height: geometry.size.height * 0.22)
                 .padding(.vertical)
 
-                
                 Text("About me")
                     .font(.system(.title) .weight(.bold))
                     .padding(.top)
                 ScrollView {
                     Text("\(textClass.aboutMe)")
                     .font(.system(.headline))
-//                    .multilineTextAlignment(.center)
-                    
-                   
+                    .multilineTextAlignment(.center)
                 }
                 .frame(width: geometry.size.width * 0.8, height: geometry.size.height * 0.5)
                 
-                
-                Text("© by: Gustavo Assis 2023")
+                Text("© Gustavo Assis 2023")
                     .frame(alignment: .bottom)
-                
             }
             .padding(.bottom)
             .foregroundColor(.white)
             .frame(width: geometry.size.width, alignment: .center)
-           
         }
     }
 }
-
-//struct InfoView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        InfoView()
-//    }
-//}

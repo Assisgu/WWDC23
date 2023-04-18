@@ -22,8 +22,3 @@ struct PadLight: View {
     }
 }
 
-struct PadButton_Previews: PreviewProvider {
-    static var previews: some View {
-        PadButton(color: .green)
-    }
-}
