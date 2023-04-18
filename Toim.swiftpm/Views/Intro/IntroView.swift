@@ -36,7 +36,8 @@ struct IntroView: View {
             VStack(spacing: 0) {
                 HStack {
                     ZStack {
-                        Color(.gray)
+                        Color(.orange)
+                            .opacity(0.45)
                             .cornerRadius(30)
                         Text("\(textIntro[index])")
                             .font(.system(.largeTitle) .weight(.light))
