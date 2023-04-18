@@ -46,12 +46,6 @@ struct CountView: View {
             }
         }
     }
-    
-    
 }
 
-//struct CountView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        CountView()
-//    }
-//}
+

@@ -86,12 +86,9 @@ struct PadsGame: View {
                 .padding()
             }
             .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
-           
         }
     }
 }
-
-
 
 struct NoAnim: ButtonStyle {
     func makeBody(configuration: Self.Configuration) -> some View {

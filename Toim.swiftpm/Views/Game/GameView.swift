@@ -8,13 +8,10 @@
 import SwiftUI
 
 struct GameView: View {
-    
+    private let padsGameView = PadsGame()
+    @Binding var modeFree: Bool
     @State var showCounter: Bool = false
     @StateObject var padsViewModel = PadsClass.shared
-    
-    private let padsGameView = PadsGame()
-    
-    
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -41,12 +38,10 @@ struct GameView: View {
                 .foregroundColor(.white)
                 .frame(width: geometry.size.width, height: geometry.size.height, alignment: .top)
                 
-                
                 VStack {
                     padsGameView
                 }
                 .frame(width: geometry.size.width * 0.24, height: geometry.size.height * 0.75)
-                
                 
                 //Message feedback
                 HStack{
@@ -62,11 +57,7 @@ struct GameView: View {
                     .font(.system(.title, design: .rounded).weight(.light))
                 }
                 .frame(width: geometry.size.width, height: geometry.size.height * 0.9, alignment: .bottom)
-                
 
-                
-                
-                // Para aparecer em cima da view principal
                 if showCounter {
                     CountView(showCounter: $showCounter, startGame: $padsViewModel.startGame)
                 }
@@ -88,49 +79,26 @@ struct GameView: View {
             .frame(width: geometry.size.width, height: geometry.size.height, alignment: .center)
         }
         .ignoresSafeArea()
-        
-        //        .navigationBarItems(
-        //            trailing:
-        //                Button("Quit") {
-        //                    dismiss()
-        //                }
-        //        )
-        
+           
         .onAppear{
             showCounter = true
             padsViewModel.gameOver = false
-            
         }
         
         .onDisappear{
-            //Criar funcao de zerar tudo
-            padsViewModel.gameSequence.removeAll()
-            padsViewModel.startGame = false
-            padsViewModel.gameOver = true
-            padsViewModel.scoreClass.resetScore()
             padsViewModel.currentScore = 0
-            
-            
+            padsViewModel.resetAll()
         }
-        
-        
         
         .onChange(of: padsViewModel.startGame){ newValue in
-            //Modo desafio
-            if padsViewModel.startGame {
-                padsGameView.padsViewModel.getSequence()
+            
+            if modeFree {
+                padsViewModel.startFree()
+            } else if padsViewModel.startGame {
+                padsGameView.padsViewModel.startChallenge()
             }
             
-            // Modo free
-            // padsViewModel.playerCanplay = true
-            // padsViewModel.modeFree = true
 
         }
-    }
-}
-
-struct GameView_Previews: PreviewProvider {
-    static var previews: some View {
-        GameView()
     }
 }

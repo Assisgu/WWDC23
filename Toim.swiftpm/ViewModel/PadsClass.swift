@@ -19,9 +19,8 @@ class PadsClass: ObservableObject {
     @Published var startGame: Bool = false
     @Published var hasHighScore: Bool = false
     @Published var currentScore: Int = 0
-    
     @Published var modeFree: Bool = false
-    
+
     var playerSequence = [String]()
     var gameSequence = [String]()
     var countTouchs: Int = 0
@@ -29,7 +28,6 @@ class PadsClass: ObservableObject {
     let soundClass = SoundClass()
     let scoreClass = ScoreClass()
     static let shared = PadsClass()
-    
     
     func turnOnLight(color: Int){
         switch color {
@@ -106,7 +104,7 @@ class PadsClass: ObservableObject {
             self.playerCanplay = false
             
             switch i {
-//                if 
+
             case "green":
                 delay(count){
                     self.turnOnLight(color: 1)
@@ -175,25 +173,12 @@ class PadsClass: ObservableObject {
             deadline: DispatchTime.now() + Double(Int64(delay * Double(NSEC_PER_SEC))) / Double(NSEC_PER_SEC), execute: closure)
     }
     
-    func getSequence(){
-        self.gameSequence = generateSequence(seq: gameSequence)
-        walksSequence(seq: gameSequence)
-    }
-    
-    func starttGame(){
-        getSequence()
-    }
-    
-    func startFree(){
-        
-    }
-    
     func checkTouchs(amountTouchs: Int){
         if amountTouchs >= self.gameSequence.count{
             self.playerCanplay = false
 
             if checkAnswer(sequence: gameSequence, playerSequence: self.playerSequence){
-                delay(1.1){
+                delay(1){
                     self.getSequence()
                 }
             } else {
@@ -208,24 +193,50 @@ class PadsClass: ObservableObject {
     func checkAnswer(sequence: [String], playerSequence: [String]) -> Bool {
         if sequence == playerSequence {
             print("Acertou 🥶")
-            self.playerSequence.removeAll()
-            self.countTouchs = 0
-            self.scoreClass.addScore()
-            if self.scoreClass.saveHighScore() {
-                self.hasHighScore = true
-            }
-            self.currentScore = self.scoreClass.score
+            correctAnswer()
             return true
         } else {
             print("Errou 😦")
-            self.playerSequence.removeAll()
-            self.gameSequence.removeAll()
-            self.countTouchs = 0
-            self.startGame = false
-            self.gameOver = true
-            self.scoreClass.resetScore()
+            resetAll()
             return false
         }
     }
     
+    func getSequence(){
+        self.gameSequence = generateSequence(seq: gameSequence)
+        walksSequence(seq: gameSequence)
+    }
+    
+    func startChallenge(){
+        getSequence()
+        self.modeFree = false
+    }
+    
+    func startFree(){
+        self.playerCanplay = true
+        self.modeFree = true
+    }
+    
+    func resetAll(){
+        self.gameSequence.removeAll()
+        self.playerSequence.removeAll()
+        self.scoreClass.resetScore()
+        self.countTouchs = 0
+        self.startGame = false
+        self.gameOver = true
+    }
+    
+    func correctAnswer(){
+        self.playerSequence.removeAll()
+        self.countTouchs = 0
+        self.scoreClass.addScore()
+        if self.scoreClass.saveHighScore() {
+            self.hasHighScore = true
+        }
+        self.currentScore = self.scoreClass.score
+    }
+    
+
+    
+        
 }

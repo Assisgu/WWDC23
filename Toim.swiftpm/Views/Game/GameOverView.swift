@@ -15,7 +15,6 @@ struct GameOverView: View {
     @Binding var hasHighScore: Bool
     @Binding var currentScore: Int
     @State var classSound = SoundClass()
-    
     @Environment(\.dismiss) var dismiss
     
     var body: some View {
@@ -30,6 +29,7 @@ struct GameOverView: View {
                     VStack(spacing: 0) {
                         HStack {
                             Text("You scored \(currentScore) points")
+                                .fontWeight(.light)
                         }.frame(height: geometry.size.height * 0.1)
                         Divider()
                         HStack {
@@ -79,7 +79,6 @@ struct GameOverView: View {
                 
             }
             .padding(.top, -20)
-
             
             //Image person
             VStack {
@@ -115,11 +114,3 @@ struct GameOverView: View {
         }
     }
 }
-
-//struct GameOverView_Previews: PreviewProvider {
-//
-//    static var previews: some View {
-//
-//        GameOverView(showCounter: <#Binding<Bool>#>, gameOver: <#Binding<Bool>#>, hasHighScore: <#Binding<Bool>#>, currentScore: <#Binding<Int>#>)
-//    }
-//}
