@@ -1,4 +1,3 @@
 # WWDC23
-A Apple realiza uma conferência anual de tecnologia o WWDC. E um dos eventos da conferência é um desafio proposto a estudantes do mundo todo, 
-o Swift Student Challenge, onde devemos desenvolver um aplicativo com o tema livre, apresentando uma experiência criativa e enriquecedora em até 3 minutos.
+When I turned 7 I got a Simon game as a gift. It's a memorization sequence game and a lot of fun. My grandfather loved spending the afternoons playing with me, and when we weren't playing he would play the guitar. So my proposal was to bring together these memories I have from my childhood, and build an app with the things my grandfather loved to spend his time with. This is how Toim was created, a game to exercise our memory with the sound of some guitar notes.
 
